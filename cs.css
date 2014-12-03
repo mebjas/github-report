@@ -1,0 +1,10 @@
+.gitreport {
+    position: absolute;
+    width: 500px;
+    min-height: 200px;
+    background: white;
+    z-index: 10;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px 0px 5px 5px;
+    right: 0px;
+}
