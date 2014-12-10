@@ -1,3 +1,4 @@
+var default_access_token = "27e3343740e8f7babc1e4c10e37fd1c9e0e20e87";
 var uname = location.pathname.replace('/','');
 var script_url = chrome.extension.getURL("inject.js");
 var icon_url = chrome.extension.getURL("resources/logo.png");
@@ -24,7 +25,7 @@ xhr.onreadystatechange = function(e) {
         
         for(i = 0; i < data.connected_users.length; i++) {
             var ajax = new XMLHttpRequest();
-            ajax.open('GET', 'https://api.github.com/users/' +data.connected_users[i].username);
+            ajax.open('GET', 'https://api.github.com/users/' +data.connected_users[i].username +"?access_token=" +default_access_token);
             ajax.username = data.connected_users[i].username;
             ajax.name = data.connected_users[i].name;
             ajax.onreadystatechange = function() {

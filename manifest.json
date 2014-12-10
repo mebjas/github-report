@@ -19,6 +19,10 @@
         "all_frames": true
     }
   ],
+  "icons": {
+      "128": "resources/logo128x128.png",
+      "48": "resources/logo48x48.png"
+   },
   "web_accessible_resources": [
     "inject.js",
     "resources/logo.png"
