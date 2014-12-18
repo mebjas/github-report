@@ -8,3 +8,6 @@
     border-radius: 5px 0px 5px 5px;
     right: 0px;
 }
+div#gitreport_lang_graph {
+	border: 1px solid rgb(216, 216, 216);
+}

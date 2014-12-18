@@ -1,4 +1,4 @@
-var default_access_token = "27e3343740e8f7babc1e4c10e37fd1c9e0e20e87";
+var default_access_token = "f070e6c0dd55ba5161740686fa2b7b6f2c0999ec";
 var uname = location.pathname.replace('/','');
 var script_url = chrome.extension.getURL("inject.js");
 var icon_url = chrome.extension.getURL("resources/logo.png");
@@ -16,11 +16,23 @@ xhr.onreadystatechange = function(e) {
         document.body.appendChild(hiddenJson);
         
         var data = JSON.parse(this.response);
+        localStorage['lang'] = JSON.stringify(data.usage.languages);
+        
         var temp = document.createElement('div');
         temp.style.display = 'none';
         temp.setAttribute('id', 'user_data_source');
-        document.body.appendChild(temp);
+        var s1 = document.createElement('script');
+        var s2 = document.createElement('script');
+        s1.src = 'https://code.highcharts.com/highcharts.js';
+        s2.src = 'https://code.highcharts.com/modules/exporting.js';
+
+        document.body.appendChild(s1);
+        s1.onload = function() {
+            document.body.appendChild(s2);    
+        }
         
+        document.body.appendChild(temp);
+
         var masterCount = 0;
         
         for(i = 0; i < data.connected_users.length; i++) {
@@ -75,9 +87,5 @@ xhr.onreadystatechange = function(e) {
     }
 }
 xhr.send();
-
-/*
-
-*/
 
 
