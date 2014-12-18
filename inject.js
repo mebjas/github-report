@@ -29,7 +29,50 @@ if (source != undefined && source != null) {
     init();
 }
 
-
+function plotGraph(type, categories, commits, dataSpline) {
+    $('#gitreport_lang_graph').highcharts({
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: categories
+        },
+        yAxis: {
+            title: {
+                text: 'Commits'
+            },
+            floor: 0
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            type: 'spline',
+            name: 'Commits',
+            data: commits,
+            marker: {
+                lineWidth: 2,
+                lineColor: Highcharts.getOptions().colors[3],
+                fillColor: 'white'
+            }
+        },{
+            type: 'pie',
+            name: 'Commits',
+            data: dataSpline,
+            center: [450, 100],
+            size: 200,
+            showInLegend: false,
+            dataLabels: {
+                enabled: false
+            }
+        }]
+    });
+}
 
 
 $(document).ready(function() {
@@ -60,41 +103,18 @@ $(document).ready(function() {
         var lang = JSON.parse(localStorage['lang']);
         var categories = new Array();
         var commits = new Array();
+        var dataSpline = new Array();
+
         for(i = 0; i < lang.length; i++) {
             categories[i] = lang[i].language;
             commits[i] = lang[i].count;
+            dataSpline[i] = {name: lang[i].language,
+                                y: lang[i].count,
+                                color: Highcharts.getOptions().colors[i]
+                            };
         }
-        localStorage.removeItem('lang');
-        $(function () {
-            $('#gitreport_lang_graph').highcharts({
-                chart: {
-                    type: 'spline'
-                },
-                title: {
-                    text: 'Language Used'
-                },
-                xAxis: {
-                    categories: categories
-                },
-                yAxis: {
-                    title: {
-                        text: 'Commits'
-                    }
-                },
-                plotOptions: {
-                    line: {
-                        dataLabels: {
-                            enabled: true
-                        },
-                        enableMouseTracking: false
-                    }
-                },
-                series: [{
-                    name: 'Commits',
-                    data: commits
-                }]
-            });
-        });
+        //localStorage.removeItem('lang');
+        plotGraph('spline', categories, commits, dataSpline); 
     }
     
 });
