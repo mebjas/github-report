@@ -2,8 +2,8 @@ github-report
 =============
 Chrome Extension to view user stats in Github Profile Page!
  - `Current Version` : `0.0.1`
- - `Status`: Under Development
- - `Installation / Testing link`:  not posted to chrome store yet! Clone this repo and test directly using chrome!
+ - `Status`: Under Development , People with link can test `v0.0.1`
+ - `Installation / Testing link`:  [Chrome Store](https://chrome.google.com/webstore/detail/github-report/pblapbghcamfjeajoofpeneocfghcamf)
 
 ## Feature List
 - [x] View Similar and Connected users
